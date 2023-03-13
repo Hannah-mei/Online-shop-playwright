@@ -117,15 +117,16 @@ exports.OnlineShop = class OnlineShop {
         await expect(this.page.locator('[class="form-group has-error"]', {has: this.page.locator('#guestFrm_country_id')})).toContainText('Please select a country!')
     }
 
-    async sdkfjsldfj(key) {
-        function sliceString(str) {
-            let newStr = str.slice(1);
-            return newStr
-        }
-        await this.goToHomepage()
-        let initialCartTotal = await this.page.locator('.cart_total').textContent();
-        let initialCartTotalNum = parseFloat(sliceString(initialCartTotal))
-        console.log(typeof initialCartTotal)
+    async writeReview() {
+        await this.goToHomepage();
+        let thumbnail = await this.page.locator('.thumbnail').first();
+        await thumbnail.hover()
+        await thumbnail.getByText('Write Review').click();
+        await this.page.getByTitle('5').click();
+        await this.page.locator('#name').fill('John');
+        await this.page.locator('#text').fill('Something')
+        await this.page.getByRole('button', {name: 'Submit'}).click()
+        await expect(this.page.locator('[class="alert alert-error alert-danger"]')).toContainText('Human verification has failed! Please try again.')
     }
 
 }

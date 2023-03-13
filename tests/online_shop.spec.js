@@ -12,7 +12,7 @@ test ('add an item to the cart', async({page}) => {
     await onlineShop.completeOrder()
 })
 
-test('skdfjlskdfj', async({page}) => {
-    const onlineShop = new OnlineShop(page)
-    await onlineShop.sdkfjsldfj('eye')
+test('write a review', async({page}) => {
+    const onlineShop = new OnlineShop(page);
+    await onlineShop.writeReview()
 })
